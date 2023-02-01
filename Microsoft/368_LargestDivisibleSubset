@@ -25,6 +25,7 @@ class Solution {
                 lds.addFirst(nums[i]);
                 ldssize--;
                 prev=nums[i];
+                
             }
         }
         return lds;
