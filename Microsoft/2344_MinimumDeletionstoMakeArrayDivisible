@@ -1,0 +1,21 @@
+class Solution {
+    public int minOperations(int[] nums, int[] numsDivide) {
+        int res =numsDivide[0];
+        for(int i:numsDivide) res = gcd(res,i);
+        //System.out.println(res);
+        Arrays.sort(nums);
+        for(int i=0;i<nums.length;i++){
+            if(numsDivide[0]%nums[i]==0){
+                return (i);
+            }
+
+        }
+        return -1;
+    }
+    public static int gcd(int a,int b){
+        if(a==0) return b;
+        else   {
+         return( gcd(b%a,a));
+        }        
+    }
+}
