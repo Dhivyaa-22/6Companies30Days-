@@ -1,0 +1,19 @@
+import java.util.*;
+class Solution {
+    public int maxRotateFunction(int[] nums) {
+        int sum=0,len=nums.length,si=0; 
+        for(int i=0;i<nums.length;i++) {
+             sum+=nums[i];
+             si=i*nums[i]+si;
+             
+        }
+       // System.out.println(si);
+        int max=si;
+        for( int i=nums.length-1;i>=1;i--){
+            si=si+sum-len*nums[i];
+            System.out.println(si);
+            max = (int)Math.max(max,si);
+        }
+        return max;
+    }
+}
