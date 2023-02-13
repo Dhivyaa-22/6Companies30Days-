@@ -1,0 +1,18 @@
+class Solution {
+    public boolean validSquare(int[] p1, int[] p2, int[] p3, int[] p4) {
+        HashSet<Integer> hash=new HashSet<>();
+        int d1=(int)Math.pow(p2[0]-p1[0],2) +(int) Math.pow(p2[1]-p1[1],2);
+        int d2=(int)Math.pow(p3[0]-p4[0],2)+ (int)Math.pow(p3[1]-p4[1],2);
+        int d3=(int)Math.pow(p2[0]-p3[0],2)+ (int)Math.pow(p2[1]-p3[1],2);
+        int d4=(int)Math.pow(p1[0]-p3[0],2)+ (int)Math.pow(p1[1]-p3[1],2);
+        int d5=(int)Math.pow(p2[0]-p4[0],2)+ (int)Math.pow(p2[1]-p4[1],2);
+        int d6=(int)Math.pow(p4[0]-p1[0],2)+ (int)Math.pow(p4[1]-p1[1],2);
+        hash.add(d1);
+        hash.add(d2);
+        hash.add(d3);
+        hash.add(d4);
+        hash.add(d5);
+        hash.add(d6);
+    return hash.size()==2 && !hash.contains(0)?true:false;
+ }
+}
