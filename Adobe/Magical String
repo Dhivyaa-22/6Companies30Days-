@@ -1,0 +1,42 @@
+class Solution {
+    public int magicalString(int n) {
+        String str="122";
+        int c=1,i=2;
+        while(i<n && n>str.length()){            
+                if(str.charAt(i)=='1'){
+                    c++;
+                    if(str.charAt(str.length()-1)=='1'){
+                        str+="2";
+                        // i++;
+                    }
+                    else{
+                        str+="1";
+                        // i++;
+                    }
+                }        
+                else{
+                    if(str.charAt(str.length()-1)=='1'){
+                        str+="22";
+                        // i++;
+        
+                                              
+                    }
+                    else{
+                        str+="11";
+                        // i++;
+                            
+                    }
+                }
+                i++;
+        }
+        while(i<n){
+
+            if(str.charAt(i)=='1') {
+                c++; 
+                // i++;               
+            }
+            i++;
+        }
+       return c; 
+    }
+}
