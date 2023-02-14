@@ -1,0 +1,25 @@
+class Solution {
+    public int countNicePairs(int[] nums) {
+        int count=0;
+        long res=0;
+        int dif=0;
+        HashMap<Integer,Integer> hash = new HashMap<>();
+        for(int i=0;i<nums.length;i++){
+            dif=nums[i]-rev(nums[i]);
+            if(hash.containsKey(dif)){
+                res+=hash.get(dif);
+            }
+            hash.put(dif,hash.getOrDefault(dif,0)+1);         
+    }
+     return (int) (res % 1000000007);      
+    }
+    public static int rev(int n){
+        int reverse=0;
+        while(n!=0){
+            int rem = n%10;
+            reverse=(reverse*10)+rem;
+            n=n/10;
+        }
+        return reverse;
+    }
+}
