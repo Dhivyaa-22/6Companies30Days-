@@ -1,0 +1,75 @@
+class Solution {
+
+    public boolean isPossible(int r, int c, int n){
+        if(r < 0 || c < 0 || r >= n || c >= n) return false;
+        return true;
+    }
+
+    public double knightProbability(int n, int k, int row, int column) {
+        double[][] curr = new double[n][n];
+        double[][] next = new double[n][n];
+
+        curr[row][column] = 1;
+        double prob = 0;
+
+        for(int m = 1 ; m <= k ; m++){
+           for(int i = 0 ; i < n ; i++){
+               for(int j = 0 ; j < n ; j++){
+                   if(curr[i][j] == 0) continue;
+                     int r = 0;
+                     int c = 0;
+
+                     r = i - 2;
+                     c = j - 1;
+                     if(isPossible(r,c,n)){
+                         next[r][c] += curr[i][j]/8.0;
+                     }
+                     r = i - 2;
+                     c = j + 1;
+                     if(isPossible(r,c,n)){
+                         next[r][c] += curr[i][j]/8.0;
+                     }
+                     r = i - 1;
+                     c = j - 2;
+                     if(isPossible(r,c,n)){
+                         next[r][c] += curr[i][j]/8.0;
+                     }
+                     r = i - 1;
+                     c = j + 2;
+                     if(isPossible(r,c,n)){
+                         next[r][c] += curr[i][j]/8.0;
+                     }
+                     r = i + 2;
+                     c = j - 1;
+                     if(isPossible(r,c,n)){
+                         next[r][c] += curr[i][j]/8.0;
+                     }
+                     r = i + 2;
+                     c = j + 1;
+                     if(isPossible(r,c,n)){
+                         next[r][c] += curr[i][j]/8.0;
+                     }
+                     r = i + 1;
+                     c = j - 2;
+                     if(isPossible(r,c,n)){
+                         next[r][c] += curr[i][j]/8.0;
+                     }
+                     r = i + 1;
+                     c = j + 2;
+                     if(isPossible(r,c,n)){
+                         next[r][c] += curr[i][j]/8.0;
+                     }
+               }
+           }
+            curr = next;
+            next = new double[n][n];
+        }
+
+        for(int i = 0 ; i < n ; i++){
+            for(int j = 0 ; j < n ; j++){
+                prob += curr[i][j];
+            }
+        }
+        return prob;
+    }
+}
