@@ -1,0 +1,22 @@
+class Solution {
+    public int numberOfBoomerangs(int[][] points) {
+        int arr[]=new int[10000000];
+        int count=0,d=0;
+        HashMap<Integer,Integer> hash=new HashMap<>();
+        for(int i=0;i<points.length;i++){
+            for(int j=0;j<points.length;j++){
+                if(i!=j){
+                    d=(int)Math.pow(points[j][0]-points[i][0],2)+(int)Math.pow(points[j][1]-points[i][1],2);
+                    hash.put(d,hash.getOrDefault(d,0)+1);
+                }                
+            }
+            for(Map.Entry<Integer,Integer> entry: hash.entrySet()){
+                int k= entry.getValue();
+                if(k>=2) count+=k*(k-1);
+            }
+            
+            hash.clear();
+        }
+        return count;
+    }
+}
