@@ -1,0 +1,35 @@
+class Solution {
+    public int minMutation(String startGene, String endGene, String[] bank) {
+        int count=0;
+        if(!Arrays.asList(bank).contains(endGene)) return -1;
+        HashSet<String> seen = new HashSet<>();
+        Queue<String> queue= new LinkedList<>();
+        queue.offer(startGene);
+        seen.add(startGene);
+        char[] genes={'A','C','G','T'};
+        while(!queue.isEmpty()){
+            int size=queue.size();
+           while(size-->0){
+                String curr = queue.poll();
+                if(curr.equals(endGene)) return count;
+                char[] currArr=curr.toCharArray();
+                for(int i=0;i<currArr.length;i++){
+                    char al = currArr[i];
+                    for(char c:genes){
+                        currArr[i]=c;
+                        String str = new String(currArr);
+                        if(!seen.contains(str) && Arrays.asList(bank).contains(str)){
+                            queue.offer(str);
+                            seen.add(str);
+                        }
+                    }
+                    currArr[i]=al;
+                }
+           }
+           System.out.println("seen"+seen);
+           System.out.println("que"+queue);
+        count++;
+        }       
+        return -1;
+    }
+}
