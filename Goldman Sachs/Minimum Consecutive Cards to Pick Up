@@ -1,0 +1,17 @@
+class Solution {
+    public int minimumCardPickup(int[] cards) {
+        int arr[]= new int[10000000];
+        int min= Integer.MAX_VALUE;
+        Arrays.fill(arr,-1);
+        for(int i=0;i<cards.length;i++){
+            if(arr[cards[i]]!=-1){
+                if(min>(i-arr[cards[i]]+1)){
+                min=(i-arr[cards[i]])+1;
+            }
+            }
+            arr[cards[i]]=i;                        
+        }
+        if(min==Integer.MAX_VALUE) return -1;
+        return min;
+    }
+}
