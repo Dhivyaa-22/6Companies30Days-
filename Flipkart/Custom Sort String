@@ -1,0 +1,28 @@
+class Solution {
+    public String customSortString(String order, String s) {
+        HashMap<Character,Integer> hash = new HashMap<>();
+        ArrayList<Character> slist = new ArrayList<>();
+        char ch[] = s.toCharArray();
+        String str="";
+        String res="";
+        for(char c:ch){
+                if(order.contains(c+"")){
+                     hash.put(c,hash.getOrDefault(c,0)+1);                            
+                }
+                else{
+                    str+=c;
+                }
+            }        
+        for(int i=0;i<order.length();i++){
+            if(s.contains(order.charAt(i)+"")){
+               String temp= (order.charAt(i)+"").repeat(hash.get(order.charAt(i)));
+               res+=temp;
+           }
+       }
+
+
+        res+=str;
+
+        return res;
+    }
+}
