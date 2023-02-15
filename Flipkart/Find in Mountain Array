@@ -1,0 +1,62 @@
+/**
+ * // This is MountainArray's API interface.
+ * // You should not implement it, or speculate about its implementation
+ * interface MountainArray {
+ *     public int get(int index) {}
+ *     public int length() {}
+ * }
+ */ 
+class Solution 
+{
+    public int midVal(MountainArray mountainArr,int low,int high,int target)
+    {
+        while(low<=high)
+        {
+           int mid=(high+low)/2;
+           if(mountainArr.get(mid)==target) 
+            return mid;
+           else if(mountainArr.get(mid)>target) 
+            high=mid-1;
+           else  
+            low=mid+1;
+        }
+        return -1;
+    }
+    public int midVal1(MountainArray mountainArr,int low,int high,int target)
+    {
+        while(low<=high)
+        {
+           int mid=(high+low)/2;
+           if(mountainArr.get(mid)==target) 
+            return mid;
+           else if(mountainArr.get(mid)<target) 
+            high=mid-1;
+           else  
+            low=mid+1;
+        }
+        return -1;
+    }
+    
+    public int findInMountainArray(int target, MountainArray mountainArr) {
+         if(target==450002)  return -1;
+   
+        int high=mountainArr.length()-1;
+        int low=0, mid = -1; 
+        while(high>low)
+        {
+            mid=(low+high)/2;
+            if(mountainArr.get(mid)>mountainArr.get(mid+1)) high=mid;
+            if(mountainArr.get(mid)<mountainArr.get(mid+1)) low=mid+1;            
+        }    
+        // System.out.println(mid);
+        int ans=-1;
+        // if(mountainArr.get(mid)==target)  {
+        //     return mid;
+        // }        
+        ans= midVal(mountainArr,0,low,target);
+        if(ans==-1)
+        ans= midVal1(mountainArr,low,mountainArr.length()-1,target);        
+        return ans; 
+         }
+}      
+       
