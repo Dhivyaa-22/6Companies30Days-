@@ -1,0 +1,22 @@
+class Solution {
+    public List<String> topKFrequent(String[] words, int k) {
+        
+        ArrayList<String> res = new ArrayList<>();
+        TreeMap<String,Integer> hash = new TreeMap<>(); 
+        
+        for(int i=0;i<words.length;i++){
+            
+                hash.put(words[i],hash.getOrDefault(words[i],0)+1);
+            
+        }
+        System.out.println(hash);
+              
+        list.sort((x,y) -> hash.get(y)-hash.get(x));
+        System.out.println(list);
+        for(int i=0;i<k;i++){
+            res.add(list.get(i));
+        }
+
+        return res;
+    }
+}
