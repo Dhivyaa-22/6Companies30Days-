@@ -1,0 +1,40 @@
+class Solution {
+    int[][] directions = {{1, 0},{0, 1},{-1, 0},{0, -1}};
+    
+    public int swimInWater(int[][] grid) {
+        int rows = grid.length;
+        int cols = grid[0].length;
+        int left = grid[0][0], right = rows*cols - 1;
+        
+        while(left < right)
+        {
+            int mid = left + (right - left)/2;
+            
+            if(canReach(mid, 0, 0, grid, new boolean[rows][cols]))
+                right = mid;
+            else
+                left = mid + 1;
+        }
+        
+        return left;
+    }
+    
+    private boolean canReach(int mid, int i, int j, int[][] grid, boolean[][] visited)
+    {
+        if(i < 0 || j < 0 || i == grid.length || j == grid.length) return false;
+        if(visited[i][j] || grid[i][j] > mid) return false;
+        
+        visited[i][j] = true;
+        if(i == grid.length - 1 && j == grid[0].length - 1) return true;
+        boolean ans = false;
+        
+        for(int k = 0; k < 4; k++)
+        {
+            int x = directions[k][0] + i;
+            int y = directions[k][1] + j;
+            
+            ans |= canReach(mid, x, y, grid, visited);
+        }
+        return ans;
+    }
+}
